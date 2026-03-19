@@ -17,6 +17,7 @@ class MyDataMethods:
     
     def upload_file(self,file_url):
         db = self.dataBase()
+        st.write(st.secrets)
         cursor = db.cursor()
 
         file_code = ''.join(random.choices(string.digits, k=10))

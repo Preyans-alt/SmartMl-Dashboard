@@ -2,16 +2,17 @@ import psycopg2
 import psycopg2.extras
 import random
 import string
-
+import streamlit as st
 class MyDataMethods:
 
     def dataBase(self):
         return psycopg2.connect(
-            host='db.kduozkvvpoqgrysdkfnr.supabase.co',
-            user='postgres',
-            password='@2006Prey@n$#',
-            dbname='postgres',
-            port='5432'
+            host=st.secrets["DB_HOST"],
+            user=st.secrets["DB_USER"],
+            password=st.secrets["DB_PASSWORD"],
+            dbname=st.secrets["DB_NAME"],
+            port=st.secrets["DB_PORT"],
+            sslmode="require"
         )
     
     def upload_file(self,file_url):

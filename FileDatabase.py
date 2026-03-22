@@ -65,11 +65,6 @@ class MyDataMethods:
         db.close()
 
         return file_url[0]
-# host='db.kduozkvvpoqgrysdkfnr.supabase.co',
-# user='postgres',
-# password='@2006Prey@n$#',
-# dbname='postgres',
-# port='5432'
 my = MyDataMethods()
 # print(my.validate_file_code(5456454566))
 my.upload_file('sdjflkj dfjiew kdsjfmn')

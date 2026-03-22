@@ -1,23 +1,27 @@
 import psycopg2
-import psycopg2.extras
 import random
 import string
-import streamlit as st
+from dotenv import load_dotenv
+# import streamlit as st
+import os
+
+load_dotenv()
 class MyDataMethods:
 
     def dataBase(self):
         return psycopg2.connect(
-            host=st.secrets["DB_HOST"],
-            user=st.secrets["DB_USER"],
-            password=st.secrets["DB_PASSWORD"],
-            dbname=st.secrets["DB_NAME"],
-            port=st.secrets["DB_PORT"],
+            host=os.getenv('DB_HOST'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            dbname=os.getenv('DB_NAME'),
+            port=os.getenv('DB_PORT'),
             sslmode="require"
         )
+
     
     def upload_file(self,file_url):
         db = self.dataBase()
-        st.write(st.secrets)
+        # st.write(st.secrets)
         cursor = db.cursor()
 
         file_code = ''.join(random.choices(string.digits, k=10))
@@ -61,3 +65,11 @@ class MyDataMethods:
         db.close()
 
         return file_url[0]
+# host='db.kduozkvvpoqgrysdkfnr.supabase.co',
+# user='postgres',
+# password='@2006Prey@n$#',
+# dbname='postgres',
+# port='5432'
+my = MyDataMethods()
+# print(my.validate_file_code(5456454566))
+my.upload_file('sdjflkj dfjiew kdsjfmn')

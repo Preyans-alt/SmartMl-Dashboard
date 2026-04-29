@@ -24,7 +24,7 @@ class DataSetHandel:
         for i in self.dataset.columns:
             count = self.dataset[i].nunique()
             print((count/150) > 0.9)
-            if count/self.dataset.shape[0] >= 0.9 and self.dataset[i].dtype == 'object':
+            if count/self.dataset.shape[0] >= 0.9 and self.dataset[i].dtype not in ['int64', 'float64']:
                 self.dataset.drop(i,axis=1,inplace=True)
                 drop_col.append(i)
         return drop_col

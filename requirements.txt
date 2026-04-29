@@ -1,3 +1,0 @@
-streamlit
-cloudinary
-psycopg2-binary

@@ -114,6 +114,9 @@ if data_set:
         temp = data_opp.removeUnique()
         if temp:
             st.subheader(f"Remove Unwanted Cols:- {temp}")
+            data = data_opp.finalData()
+            st.subheader('new DataSet:')
+            st.dataframe(data)
 
         st.subheader(f"DataSet Shape After Removing outliears:- {data_opp.removeOutliears()}")
 
@@ -185,7 +188,7 @@ if data_set:
                     myModel = model_object[model]
 
                     # to check y data type id object and not classification then show error
-                    if y_train.dtype == 'object' and myModel not in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:
+                    if y_train.dtype == 'object' and model not in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:
                         st.warning('Selected Y is Categorical Use Classification Model!!!')
                     
                     else:
@@ -196,7 +199,7 @@ if data_set:
                         st.dataframe(temp_data)
 
                         # to show error , or accuracy_score score according to model
-                        if myModel in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:
+                        if model in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:
                             st.info(f'Accuracy Score: {accuracy_score(y_test,y_pred)}')
                             st.info(f'Recall Score: {recall_score(y_test,y_pred,average='weighted')}')
                             st.info(f'Confusion Matrix:')

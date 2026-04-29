@@ -24,7 +24,7 @@ class DataSetHandel:
         for i in self.dataset.columns:
             count = self.dataset[i].nunique()
             print((count/150) > 0.9)
-            if count/self.dataset.shape[0] >= 0.9:
+            if count/self.dataset.shape[0] >= 0.9 and self.dataset[i].dtype == 'object':
                 self.dataset.drop(i,axis=1,inplace=True)
                 drop_col.append(i)
         return drop_col
@@ -189,7 +189,6 @@ if data_set:
                         st.warning('Selected Y is Categorical Use Classification Model!!!')
                     
                     else:
-
                         myModel.fit(x_train,y_train)
                         st.write('Model Prediction:- ')
                         y_pred = myModel.predict(x_test)
@@ -198,17 +197,17 @@ if data_set:
 
                         # to show error , or accuracy_score score according to model
                         if myModel in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:
-                            st.info(f'Accuracy Score:- {accuracy_score(y_test,y_pred)}')
-                            st.info(f'Recall Score:- {recall_score(y_test,y_pred,average='weighted')}')
-                            st.info(f'Confusion Matrix:-')
+                            st.info(f'Accuracy Score: {accuracy_score(y_test,y_pred)}')
+                            st.info(f'Recall Score: {recall_score(y_test,y_pred,average='weighted')}')
+                            st.info(f'Confusion Matrix:')
                             fig,ax = plt.subplots()
                             ConfusionMatrixDisplay.from_predictions(y_test,y_pred,ax=ax)
                             st.pyplot(fig)
                         else:
 
-                            st.info(f'MAE:- {mean_absolute_error(y_test,y_pred)}')
-                            st.info(f'MSE:- {mean_squared_error(y_test,y_pred)}')
-                            st.info(f'R^2 Score:- {r2_score(y_test,y_pred)}')
+                            st.info(f'MAE: {mean_absolute_error(y_test,y_pred)}')
+                            st.info(f'MSE: {mean_squared_error(y_test,y_pred)}')
+                            st.info(f'R^2 Score: {r2_score(y_test,y_pred)}')
 
 
                         # to plot  line chart between actual and predicted values

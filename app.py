@@ -192,11 +192,14 @@ if data_set:
                         st.warning('Selected Y is Categorical Use Classification Model!!!')
                     
                     else:
-                        myModel.fit(x_train,y_train)
-                        st.write('Model Prediction:- ')
-                        y_pred = myModel.predict(x_test)
-                        temp_data = pd.DataFrame({'Actual':y_test,'Predicted':y_pred})
-                        st.dataframe(temp_data)
+                        try:
+                            myModel.fit(x_train,y_train)
+                            st.write('Model Prediction:- ')
+                            y_pred = myModel.predict(x_test)
+                            temp_data = pd.DataFrame({'Actual':y_test,'Predicted':y_pred})
+                            st.dataframe(temp_data)
+                        except:
+                            st.write('Error in Reading Data!!!")
 
                         # to show error , or accuracy_score score according to model
                         if model in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:

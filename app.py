@@ -199,7 +199,7 @@ if data_set:
                             temp_data = pd.DataFrame({'Actual':y_test,'Predicted':y_pred})
                             st.dataframe(temp_data)
                         except Exception as e:
-                            st.write('Error: ',e)
+                            st.write('Error While Reading DataSet!!!')
 
                         # to show error , or accuracy_score score according to model
                         if model in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:

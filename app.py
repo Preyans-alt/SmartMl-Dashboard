@@ -198,8 +198,8 @@ if data_set:
                             y_pred = myModel.predict(x_test)
                             temp_data = pd.DataFrame({'Actual':y_test,'Predicted':y_pred})
                             st.dataframe(temp_data)
-                        except:
-                            st.write('Error in Reading Data!!!")
+                        except Exception as e:
+                            st.write('Error: ',e)
 
                         # to show error , or accuracy_score score according to model
                         if model in ['Logistic Regression','Decision Tree Classifier','Random Forest Classifier','Support Vector Classifier','KNN Classifier' ,'Naive Bayes']:
